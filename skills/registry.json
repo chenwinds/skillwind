@@ -1,8 +1,29 @@
 {
-  "version": "1.0.0",
-  "last_updated": "2026-03-13T00:00:00Z",
-  "skills": {},
-  "sync_history": [],
+  "version": "1.0.1",
+  "last_updated": "2026-03-13T20:35:00Z",
+  "skills": {
+    "ob": {
+      "name": "ob",
+      "description": "口述内容整理技能。将口语化的语音识别文字转换为结构化文章。",
+      "version": "1.0.0",
+      "author": "chenwinds",
+      "date_added": "2026-03-13",
+      "files": [
+        "SKILL.md",
+        "examples.md",
+        "evals.json",
+        "ob.skill"
+      ]
+    }
+  },
+  "sync_history": [
+    {
+      "date": "2026-03-13T20:35:00Z",
+      "action": "add_skill",
+      "skill_name": "ob",
+      "device": "PC-20260225WASP"
+    }
+  ],
   "device_preferences": {
     "desktop": {},
     "laptop": {}

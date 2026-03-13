@@ -81,7 +81,7 @@ skillwind/
 
 | Skill Name | Description | Author | Date Added |
 |------------|-------------|--------|------------|
-| *Add your skills here* | *Add your skills here* | *Add your skills here* | *Add your skills here* |
+| **ob** | 口述内容整理技能。将口语化的语音识别文字转换为结构化文章，自动添加标点、删除语气词、分段并格式化 Markdown。 | chenwinds | 2026-03-13 |
 
 > **Tip**: Update this table when you add, modify, or remove skills.
 >
