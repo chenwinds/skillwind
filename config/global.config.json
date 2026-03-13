@@ -1,0 +1,10 @@
+{
+  "sync": {
+    "auto_pull": true,
+    "auto_pull_interval": "30m"
+  },
+  "security": {
+    "install_confirmation": true,
+    "allow_downgrade": false
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "device_name": "desktop",
+  "can_create_skill": true,
+  "can_modify_skill": true,
+  "preferred_skills": [],
+  "auto_install_new": true,
+  "never_install": [],
+  "install_confirmation": false
+}
