@@ -160,28 +160,7 @@ def search_unsplash_source(query, limit=10):
     return results
 
 
-def filter_by_megapixels(results, max_pixels=4200000):
-    """
-    Filter image results by maximum megapixel count.
-
-    Args:
-        results: List of image result dictionaries with 'width' and 'height'
-        max_pixels: Maximum pixel count (width * height), default 4.2MP = 420 万像素
-
-    Returns:
-        Filtered list of images that do not exceed the maximum size
-    """
-    filtered = []
-    for img in results:
-        pixel_count = img['width'] * img['height']
-        if pixel_count <= max_pixels:
-            filtered.append(img)
-        else:
-            print(f"  Filtered out: {img['width']}x{img['height']} = {pixel_count/1_000_000:.1f}MP (exceeds {max_pixels/1_000_000:.1f}MP limit)", file=sys.stderr)
-    return filtered
-
-
-def search_images(query, orientation="landscape", limit=10, sources=None, max_megapixels=4.2):
+def search_images(query, orientation="landscape", limit=10, sources=None):
     """
     Search multiple image sources and return consolidated results.
 
@@ -190,7 +169,6 @@ def search_images(query, orientation="landscape", limit=10, sources=None, max_me
         orientation: 'landscape', 'portrait', or 'all'
         limit: Max results per source
         sources: List of sources to search (default: ['pexels', 'pixabay'])
-        max_megapixels: Maximum image size in megapixels (default: 4.2MP = 420 万像素)
 
     Returns:
         List of image result dictionaries
@@ -199,28 +177,24 @@ def search_images(query, orientation="landscape", limit=10, sources=None, max_me
         sources = ['pexels', 'pixabay']
 
     all_results = []
-    max_pixels = int(max_megapixels * 1_000_000)  # Convert to pixel count
 
     if 'pexels' in sources:
         print(f"Searching Pexels for '{query}'...", file=sys.stderr)
         results = search_pexels(query, orientation, limit)
-        results = filter_by_megapixels(results, max_pixels)
         all_results.extend(results)
-        print(f"  Found {len(results)} landscape images from Pexels (after {max_megapixels}MP filter)", file=sys.stderr)
+        print(f"  Found {len(results)} landscape images from Pexels", file=sys.stderr)
 
     if 'pixabay' in sources:
         print(f"Searching Pixabay for '{query}'...", file=sys.stderr)
         results = search_pixabay(query, orientation, limit)
-        results = filter_by_megapixels(results, max_pixels)
         all_results.extend(results)
-        print(f"  Found {len(results)} landscape images from Pixabay (after {max_megapixels}MP filter)", file=sys.stderr)
+        print(f"  Found {len(results)} landscape images from Pixabay", file=sys.stderr)
 
     if 'unsplash' in sources:
         print(f"Searching Unsplash for '{query}'...", file=sys.stderr)
         results = search_unsplash_source(query, limit)
-        results = filter_by_megapixels(results, max_pixels)
         all_results.extend(results)
-        print(f"  Found {len(results)} images from Unsplash (source URL pattern, after {max_megapixels}MP filter)", file=sys.stderr)
+        print(f"  Found {len(results)} images from Unsplash (source URL pattern)", file=sys.stderr)
 
     # Sort by relevance (could be improved with scoring)
     return all_results
@@ -267,12 +241,6 @@ Examples:
         action="store_true",
         help="Output as JSON"
     )
-    parser.add_argument(
-        "--max-megapixels",
-        type=float,
-        default=4.2,
-        help="Maximum image size in megapixels (default: 4.2 = 420 万像素，default: 4.2)"
-    )
 
     args = parser.parse_args()
 
@@ -280,8 +248,7 @@ Examples:
         query=args.query,
         orientation=args.orientation,
         limit=args.limit,
-        sources=args.sources,
-        max_megapixels=args.max_megapixels
+        sources=args.sources
     )
 
     if args.json:

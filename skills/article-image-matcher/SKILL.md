@@ -93,15 +93,16 @@ Options:
 - `--orientation` / `-o`: landscape, portrait, or all (default: landscape)
 - `--limit` / `-l`: Max results per source (default: 10, max: 80 for Pexels, 100 for Pixabay)
 - `--sources` / `-s`: Sources to search: pexels, pixabay, unsplash (default: pexels pixabay)
+- `--max-megapixels`: Maximum image size in megapixels (default: 4.2 = 420 万像素)
 - `--json`: Output results as JSON
 
 Examples:
 ```bash
-# Search with Chinese keyword
+# Search with Chinese keyword (default 420 万像素 limit applied)
 python scripts/search_images.py -q "人工智能" -o landscape -l 10
 
-# Search only Pexels
-python scripts/search_images.py -q "technology" -s pexels
+# Search with custom size limit (e.g., 6MP = 600 万像素)
+python scripts/search_images.py -q "technology" --max-megapixels 6
 
 # Output as JSON for piping to download script
 python scripts/search_images.py -q "nature" --json
@@ -117,16 +118,22 @@ For each candidate image, verify:
    - Reject square images (width == height)
    - Reject portrait images (height > width)
 
-2. **Relevance check**: Image must clearly relate to the adjacent content
+2. **Size limit**: Image must not exceed 420 万像素 (4.2 megapixels)
+   - Calculate: width × height ≤ 4,200,000 pixels
+   - This filter is automatically applied by the search script
+   - Example valid sizes: 2400×1350 (3.2MP), 2100×1400 (2.9MP)
+   - Example invalid sizes: 3000×2000 (6MP), 4000×3000 (12MP)
+
+3. **Relevance check**: Image must clearly relate to the adjacent content
    - Ask: "Does this image help illustrate or enhance this section?"
    - If the connection is weak, keep searching
 
-3. **Quality check**:
+4. **Quality check**:
    - Resolution should be at least 800px wide
    - Image should be clear, not blurry or heavily compressed
    - Avoid images with visible watermarks
 
-4. **License check**: Confirm the image is truly free/open source (CC0 or similar)
+5. **License check**: Confirm the image is truly free/open source (CC0 or similar)
 
 ## Step 4: Embed Images in Markdown
 
