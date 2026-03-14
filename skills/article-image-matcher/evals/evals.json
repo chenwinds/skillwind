@@ -1,0 +1,128 @@
+{
+  "skill_name": "article-image-matcher",
+  "evals": [
+    {
+      "id": 1,
+      "name": "technical-ai-article",
+      "prompt": "请为下面这篇关于人工智能的 Markdown 文章添加配图，包括封面和 3-5 张内文配图：\n\n# 人工智能的未来发展趋势\n\n## 引言\n\n人工智能（AI）技术正在快速发展，从深度学习到大语言模型，AI 正在改变我们的生活和工作方式。\n\n## 深度学习技术的突破\n\n深度学习作为人工智能的核心技术之一，在图像识别、自然语言处理等领域取得了突破性进展。卷积神经网络（CNN）和 Transformer 架构的出现，让机器能够理解和处理复杂的模式。\n\n## 大语言模型的崛起\n\n以 GPT 为代表的语言模型展现了惊人的语言理解和生成能力。这些模型通过海量数据训练，能够完成写作、编程、问答等多种任务。\n\n## AI 在医疗领域的应用\n\nAI 技术正在医疗行业发挥重要作用，包括疾病诊断、药物研发、个性化治疗等方面。机器学习算法可以帮助医生更准确地识别医学影像中的异常。\n\n## 伦理与挑战\n\n随着 AI 技术的普及，我们也面临着隐私保护、算法偏见、就业影响等伦理和社会问题。如何在发展中平衡创新与责任，是整个行业需要思考的问题。\n\n## 结论\n\n人工智能的未来充满机遇与挑战。我们需要在技术创新的同时，关注其社会影响，确保 AI 技术能够造福人类。",
+      "expected_output": "文章应包含 1 张封面图（在标题后）和 3-5 张内文配图，所有图片为横版，来源于国内可访问的免费图片网站，图片下载到本地 images/ 目录，同时在 markdown 中正确引用",
+      "files": [],
+      "assertions": [
+        {
+          "name": "has-cover-image",
+          "description": "文章标题后必须有封面图（第一张图）",
+          "type": "structural"
+        },
+        {
+          "name": "image-count-in-range",
+          "description": "图片总数在 3-5 张之间（包括封面）",
+          "type": "count",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "name": "all-images-landscape",
+          "description": "所有图片必须是横版（宽度 > 高度）",
+          "type": "orientation"
+        },
+        {
+          "name": "images-downloaded-locally",
+          "description": "图片必须下载到本地 images/ 目录",
+          "type": "file-exists"
+        },
+        {
+          "name": "markdown-syntax-correct",
+          "description": "所有图片使用正确的 Markdown 语法 ![alt](url)",
+          "type": "format"
+        },
+        {
+          "name": "alt-text-in-chinese",
+          "description": "图片 alt 描述文字使用中文",
+          "type": "language"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "travel-blog-article",
+      "prompt": "为这篇旅行博客文章添加配图和封面：\n\n# 云南自由行：一场说走就走的旅行\n\n## 出发前的准备\n\n一直想去云南旅行，这次终于有机会请了年假，开始了期待已久的云南之旅。提前做了很多攻略，准备了轻便的衣物和相机。\n\n## 昆明：春城的第一印象\n\n昆明被称为春城，四季如春。翠湖公园的荷花盛开，滇池边海鸥飞翔，这座城市的悠闲氛围让人印象深刻。\n\n## 大理：苍山洱海的浪漫\n\n大理古城的石板路，洱海的碧波，苍山的云雾，构成了大理最迷人的风景。租一辆自行车环洱海骑行，是这次旅行最难忘的体验。\n\n## 丽江：古城的夜生活\n\n丽江古城的夜景格外美丽，四方街的灯火，酒吧街的歌声，让这座千年古城焕发出新的活力。\n\n## 香格里拉：接近天堂的地方\n\n海拔 3000 多米的香格里拉，有着纯净的天空和辽阔的草原。松赞林寺的金顶在阳光下闪闪发光，让人感受到信仰的力量。\n\n## 旅行的意义\n\n旅行不只是为了看风景，更是为了遇见更好的自己。云南之行让我重新认识了生活的意义。",
+      "expected_output": "文章应包含 1 张封面图和 4-5 张内文配图（昆明、大理、丽江、香格里拉各一张），所有图片为横版，体现云南各地特色风光",
+      "files": [],
+      "assertions": [
+        {
+          "name": "has-cover-image",
+          "description": "文章标题后必须有封面图",
+          "type": "structural"
+        },
+        {
+          "name": "image-count-in-range",
+          "description": "图片总数在 4-6 张之间（包括封面）",
+          "type": "count",
+          "min": 4,
+          "max": 6
+        },
+        {
+          "name": "all-images-landscape",
+          "description": "所有图片必须是横版（宽度 > 高度）",
+          "type": "orientation"
+        },
+        {
+          "name": "section-images-present",
+          "description": "昆明、大理、丽江、香格里拉各章节应有对应配图",
+          "type": "coverage"
+        },
+        {
+          "name": "images-downloaded-locally",
+          "description": "图片必须下载到本地 images/ 目录",
+          "type": "file-exists"
+        },
+        {
+          "name": "markdown-syntax-correct",
+          "description": "所有图片使用正确的 Markdown 语法",
+          "type": "format"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "business-report-article",
+      "prompt": "请为这份市场分析报告添加专业的配图：\n\n# 2024 年中国消费市场分析报告\n\n## 执行摘要\n\n本报告分析了 2024 年中国消费市场的整体趋势，包括消费者行为变化、新兴渠道发展和品牌策略调整。\n\n## 宏观经济环境\n\n2024 年中国经济保持稳定增长，GDP 增速预期 5% 左右。居民可支配收入持续增长，消费升级趋势明显。\n\n## 消费者行为洞察\n\n### 年轻化趋势\n\nZ 世代成为消费主力军，他们更注重个性化、体验式和可持续消费。品牌需要理解年轻人的价值观和生活方式。\n\n### 数字化消费\n\n线上购物渗透率持续提升，直播带货、社交电商成为重要渠道。消费者决策路径更加多元和复杂。\n\n## 行业趋势分析\n\n### 健康消费兴起\n\n健康食品、运动装备、养生服务等健康相关消费快速增长。消费者更加关注产品成分和健康价值。\n\n### 国货品牌崛起\n\n本土品牌在品质、设计、营销等方面持续提升，赢得越来越多消费者的青睐。国潮成为重要的消费趋势。\n\n## 结论与建议\n\n企业需要关注消费者需求变化，加强数字化能力建设，提升产品品质和服务体验，以应对日益激烈的市场竞争。",
+      "expected_output": "文章应包含 1 张封面图和 3-4 张商务风格的配图，图片应体现商业、数据分析、消费场景等主题，整体风格专业、简洁",
+      "files": [],
+      "assertions": [
+        {
+          "name": "has-cover-image",
+          "description": "文章标题后必须有封面图",
+          "type": "structural"
+        },
+        {
+          "name": "image-count-in-range",
+          "description": "图片总数在 3-5 张之间（包括封面）",
+          "type": "count",
+          "min": 3,
+          "max": 5
+        },
+        {
+          "name": "all-images-landscape",
+          "description": "所有图片必须是横版（宽度 > 高度）",
+          "type": "orientation"
+        },
+        {
+          "name": "professional-style",
+          "description": "图片风格应专业、简洁，符合商业报告调性",
+          "type": "style"
+        },
+        {
+          "name": "images-downloaded-locally",
+          "description": "图片必须下载到本地 images/ 目录",
+          "type": "file-exists"
+        },
+        {
+          "name": "markdown-syntax-correct",
+          "description": "所有图片使用正确的 Markdown 语法",
+          "type": "format"
+        }
+      ]
+    }
+  ]
+}

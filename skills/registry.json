@@ -1,19 +1,39 @@
 {
-  "version": "1.0.1",
-  "last_updated": "2026-03-13T20:35:00Z",
+  "version": "1.2.0",
+  "last_updated": "2026-03-13T23:00:00Z",
   "skills": {
     "ob": {
       "name": "ob",
-      "description": "口述内容整理技能。将口语化的语音识别文字转换为结构化文章。",
-      "version": "1.0.0",
+      "description": "口述内容整理技能。整理语音识别文字、口述内容、会议记录、访谈记录、语音笔记，转为结构化 Markdown 文章。",
+      "version": "1.2.0",
       "author": "chenwinds",
       "date_added": "2026-03-13",
+      "date_modified": "2026-03-13",
       "files": [
         "SKILL.md",
-        "examples.md",
         "evals.json",
-        "ob.skill"
-      ]
+        "CHANGELOG.md",
+        "references/examples.md",
+        "scripts/run_eval.py",
+        "scripts/README.md",
+        "scripts/eval.bat",
+        "scripts/eval.sh"
+      ],
+      "trigger_keywords": [
+        "整理口述",
+        "语音转文字",
+        "会议记录",
+        "访谈记录",
+        "语音笔记",
+        "口语化文字",
+        "没有标点",
+        "录音整理"
+      ],
+      "features": {
+        "auto_eval": true,
+        "auto_add_evals": true,
+        "batch_test": true
+      }
     }
   },
   "sync_history": [
@@ -21,6 +41,46 @@
       "date": "2026-03-13T20:35:00Z",
       "action": "add_skill",
       "skill_name": "ob",
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-13T21:00:00Z",
+      "action": "update_skill",
+      "skill_name": "ob",
+      "version": "1.1.0",
+      "changes": [
+        "删除冗余 ob.skill 文件",
+        "重构文件结构，examples.md 移至 references/",
+        "添加量化评估标准和自动化评估脚本",
+        "添加边界情况处理指南",
+        "优化触发条件和关键词"
+      ],
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-13T22:30:00Z",
+      "action": "update_skill",
+      "skill_name": "ob",
+      "version": "1.2.0",
+      "changes": [
+        "重构评估工具为三种模式 (eval/add/batch)",
+        "新增自动收录功能，高分输出可添加到测试用例",
+        "移除 HTML 查看器，只保留文字报告",
+        "添加评估工具使用说明 README.md",
+        "在 SKILL.md 中添加自我评估与迭代章节"
+      ],
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-13T23:00:00Z",
+      "action": "update_skill",
+      "skill_name": "ob",
+      "version": "1.2.0",
+      "changes": [
+        "修复 Windows 编码问题",
+        "添加 eval.bat 和 eval.sh 快速启动脚本",
+        "统一使用 ASCII 字符显示评估状态"
+      ],
       "device": "PC-20260225WASP"
     }
   ],
