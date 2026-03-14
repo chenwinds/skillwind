@@ -2,3 +2,6 @@ logs/
 *.log
 *.tmp
 .claude/
+# SSH Keys
+*.ssh*
+*openssh*
