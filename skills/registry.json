@@ -1,6 +1,6 @@
 {
-  "version": "1.2.0",
-  "last_updated": "2026-03-13T23:00:00Z",
+  "version": "1.3.0",
+  "last_updated": "2026-03-17T08:00:00Z",
   "skills": {
     "ob": {
       "name": "ob",
@@ -33,6 +33,202 @@
         "auto_eval": true,
         "auto_add_evals": true,
         "batch_test": true
+      }
+    },
+    "article-image-matcher": {
+      "name": "article-image-matcher",
+      "description": "How to add matched images to Chinese Markdown articles. Use this skill whenever the user asks to add images to an article, add a cover image, insert illustrations, or match images to content. This includes phrases like \"为文章配图\", \"添加封面\", \"插入图片\", \"找配图\", \"给文章加图\", \"配几张图\", \"找个封面\", \"配图推荐\" etc. The skill analyzes article content, searches Chinese-friendly free stock photo sources (Pexels, Pixabay, Unsplash), selects 3-5 landscape-oriented images that match the article theme, and embeds them directly into the Markdown document. IMPORTANT: Always use this skill when processing articles that need visual enhancement - don't just embed random images, ensure they match the content theme and are properly formatted as landscape orientation. Before searching, ensure API keys are configured for best results.",
+      "version": "1.0.0",
+      "author": "chenwinds",
+      "date_added": "2026-03-14",
+      "date_modified": "2026-03-14",
+      "files": [
+        "SKILL.md",
+        "scripts/search_images.py",
+        "scripts/download_images.py"
+      ],
+      "trigger_keywords": [
+        "为文章配图",
+        "添加封面",
+        "插入图片",
+        "找配图",
+        "给文章加图",
+        "配几张图",
+        "找个封面",
+        "配图推荐",
+        "add images to article",
+        "article cover image"
+      ],
+      "features": {
+        "auto_eval": false,
+        "api_required": true
+      }
+    },
+    "docx": {
+      "name": "docx",
+      "description": "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation.",
+      "version": "1.0.0",
+      "author": "Anthropic",
+      "date_added": "2026-03-14",
+      "date_modified": "2026-03-14",
+      "files": [
+        "SKILL.md",
+        "scripts/office/unpack.py",
+        "scripts/office/pack.py",
+        "scripts/office/validate.py",
+        "scripts/office/soffice.py",
+        "scripts/accept_changes.py",
+        "scripts/comment.py"
+      ],
+      "trigger_keywords": [
+        "Word doc",
+        "word document",
+        ".docx",
+        "create report",
+        "create memo",
+        "create letter",
+        "document template",
+        "tracked changes",
+        "Word comment"
+      ],
+      "features": {
+        "auto_eval": false,
+        "requires_npm": true
+      }
+    },
+    "frontend-design": {
+      "name": "frontend-design",
+      "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.",
+      "version": "1.0.0",
+      "author": "Anthropic",
+      "date_added": "2026-03-14",
+      "date_modified": "2026-03-14",
+      "files": [
+        "SKILL.md"
+      ],
+      "trigger_keywords": [
+        "build web component",
+        "create website",
+        "landing page",
+        "dashboard",
+        "React component",
+        "HTML/CSS layout",
+        "styling UI",
+        "beautify web",
+        "frontend design",
+        "web application"
+      ],
+      "features": {
+        "auto_eval": false
+      }
+    },
+    "image-search-download": {
+      "name": "image-search-download",
+      "description": "图片搜索和下载技能。根据用户输入的关键词自动从 Pexels、Pixabay、Unsplash 搜索图片并下载到本地目录。当用户需要找图、下载图片、搜索素材，或说\"帮我找几张 XX 的图片\"、\"下载一些 XX 照片\"等类似请求时，都要使用这个技能。技能会自动调用 bundled scripts 完成搜索和下载。",
+      "version": "1.0.0",
+      "author": "chenwinds",
+      "date_added": "2026-03-14",
+      "date_modified": "2026-03-14",
+      "files": [
+        "SKILL.md",
+        "scripts/search_images.py",
+        "scripts/download_images.py"
+      ],
+      "trigger_keywords": [
+        "找图",
+        "下载图片",
+        "搜索素材",
+        "帮我找几张",
+        "下载一些",
+        "图片搜索",
+        "搜索图片"
+      ],
+      "features": {
+        "auto_eval": false,
+        "api_required": true
+      }
+    },
+    "ob-to-article": {
+      "name": "ob-to-article",
+      "description": "口述转完整文章技能。自动检测 Word 文档并转换为 Markdown，将口语化的语音识别文字整理成结构化文章，自动匹配 3-5 张横版配图，并**自动保存**最终的 Markdown 文件到本地。当用户提供 Word 文档、语音转文字内容、口述记录、会议记录，或直接说\"把这段口述转成文章\"、\"整理语音笔记并配图\"、\"处理这个 Word 文档\"等类似请求时，都要使用这个技能。这是一个四阶段组合流程技能（含自动保存）。",
+      "version": "1.0.0",
+      "author": "chenwinds",
+      "date_added": "2026-03-14",
+      "date_modified": "2026-03-14",
+      "files": [
+        "SKILL.md"
+      ],
+      "trigger_keywords": [
+        "把这段口述转成文章",
+        "整理语音笔记并配图",
+        "处理 Word 文档",
+        "口述转文章",
+        "语音转文章",
+        "口述整理保存"
+      ],
+      "features": {
+        "auto_eval": false,
+        "composite_skill": true,
+        "auto_save": true
+      }
+    },
+    "skill-creator": {
+      "name": "skill-creator",
+      "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, update or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+      "version": "1.0.0",
+      "author": "Anthropic",
+      "date_added": "2026-03-14",
+      "date_modified": "2026-03-14",
+      "files": [
+        "SKILL.md",
+        "agents/grader.md",
+        "agents/comparator.md",
+        "agents/analyzer.md",
+        "references/schemas.md",
+        "scripts/aggregate_benchmark.py",
+        "scripts/package_skill.py",
+        "scripts/run_loop.py",
+        "scripts/run_eval.py",
+        "eval-viewer/generate_review.py",
+        "assets/eval_review.html"
+      ],
+      "trigger_keywords": [
+        "create skill",
+        "new skill",
+        "update skill",
+        "improve skill",
+        "run eval",
+        "benchmark skill",
+        "test skill",
+        "optimize description"
+      ],
+      "features": {
+        "auto_eval": true,
+        "subagent_required": true
+      }
+    },
+    "tdd-flow": {
+      "name": "tdd-flow",
+      "description": "Guide users through Test-Driven Development (TDD) workflow with interactive Red-Green-Refactor cycles. Use this skill when the user wants to adopt TDD methodology, mentions \"test-driven\", \"test first\", \"write tests first\", requests unit testing, or at the start of a project when testing strategy is being discussed. This skill provides step-by-step interactive guidance for writing failing tests, making them pass, and refactoring code while maintaining test coverage.",
+      "version": "1.0.0",
+      "author": "chenwinds",
+      "date_added": "2026-03-16",
+      "date_modified": "2026-03-16",
+      "files": [
+        "SKILL.md"
+      ],
+      "trigger_keywords": [
+        "TDD",
+        "test-driven",
+        "test first",
+        "write tests first",
+        "unit testing",
+        "testing strategy",
+        "Red-Green-Refactor"
+      ],
+      "features": {
+        "auto_eval": false,
+        "interactive": true
       }
     }
   },
@@ -80,6 +276,63 @@
         "修复 Windows 编码问题",
         "添加 eval.bat 和 eval.sh 快速启动脚本",
         "统一使用 ASCII 字符显示评估状态"
+      ],
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-14T13:20:00Z",
+      "action": "add_skill",
+      "skill_name": "article-image-matcher",
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-14T20:54:00Z",
+      "action": "add_skill",
+      "skill_name": "docx",
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-14T20:54:00Z",
+      "action": "add_skill",
+      "skill_name": "frontend-design",
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-14T20:54:00Z",
+      "action": "add_skill",
+      "skill_name": "image-search-download",
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-14T20:54:00Z",
+      "action": "add_skill",
+      "skill_name": "ob-to-article",
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-14T20:54:00Z",
+      "action": "add_skill",
+      "skill_name": "skill-creator",
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-16T16:04:00Z",
+      "action": "add_skill",
+      "skill_name": "tdd-flow",
+      "device": "PC-20260225WASP"
+    },
+    {
+      "date": "2026-03-17T08:00:00Z",
+      "action": "update_registry",
+      "version": "1.3.0",
+      "changes": [
+        "添加 article-image-matcher 技能",
+        "添加 docx 技能",
+        "添加 frontend-design 技能",
+        "添加 image-search-download 技能",
+        "添加 ob-to-article 技能",
+        "添加 skill-creator 技能",
+        "添加 tdd-flow 技能"
       ],
       "device": "PC-20260225WASP"
     }
